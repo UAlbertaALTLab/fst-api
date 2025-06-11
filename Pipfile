@@ -9,9 +9,12 @@ pytest = "*"
 pytest-django = "*"
 pytest-mypy = "*"
 django-stubs = "~=5.2"
+mypy = "*"
 
 [packages]
 Django = "~=5.2"
+djangorestframework = "*"
+hfst = "*"
 
 [scripts]
 test = "pytest --mypy src"
