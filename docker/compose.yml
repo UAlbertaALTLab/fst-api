@@ -1,0 +1,14 @@
+services:
+  fst-api:
+    build: .
+    container_name: fst-api
+    ports:
+      - "8085:8000"
+    environment:
+      DJANGO_ALLOWED_HOSTS: ${FST_API_ALLOWED_HOSTS}
+      FST_API_ANALYSER_FST: ${FST_API_ANALYSER_FST}
+      FST_API_GENERATOR_FST: ${FST_API_GENERATOR_FST}
+    env_file:
+      - .env
+    volumes:
+      ${FST_API_FST_PATH}:/app/resources/

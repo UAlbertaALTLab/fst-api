@@ -1,8 +1,9 @@
 from rest_framework import serializers, generics
-from rest_framework.response import Response
+from django import settings
 from hfst_altlab import TransducerPair
 
-fsts = TransducerPair(analyser="resources/analyser-dict-gt-desc.hfstol", generator="resources/generator-dict-gt-norm.hfstol")
+fsts = TransducerPair(analyser=settings.ANALYSER_FST, generator=settings.GENERATOR_FST)
+
 
 class AnalysisSerializer(serializers.Serializer):
     lemma = serializers.StringRelatedField()
@@ -10,12 +11,14 @@ class AnalysisSerializer(serializers.Serializer):
     suffixes = serializers.ListField(child=serializers.StringRelatedField())
     standardized = serializers.StringRelatedField()
 
+
 class AnalysisList(generics.ListAPIView):
     """
     Apply the FST to the wordform and produce a list of analyses.
     """
+
     serializer_class = AnalysisSerializer
 
     def get_queryset(self):
-        wordform = self.kwargs['wordform']
+        wordform = self.kwargs["wordform"]
         return fsts.analyse(wordform)

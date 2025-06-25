@@ -18,6 +18,9 @@ hfst-altlab = "*"
 markdown = "*"
 pygments = "*"
 drf-yasg = "*"
+uvicorn = "*"
+uvicorn-worker = "*"
+gunicorn = "*"
 
 [scripts]
 test = "pytest --mypy src"
