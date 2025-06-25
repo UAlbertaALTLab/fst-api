@@ -14,7 +14,10 @@ mypy = "*"
 [packages]
 Django = "~=5.2"
 djangorestframework = "*"
-hfst = "*"
+hfst-altlab = "*"
+markdown = "*"
+pygments = "*"
+drf-yasg = "*"
 
 [scripts]
 test = "pytest --mypy src"
