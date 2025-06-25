@@ -5,7 +5,7 @@ services:
       dockerfile: docker/Dockerfile
     container_name: fst-api
     ports:
-      - "8000:8000"
+      - "8085:8000"
     environment:
       DJANGO_ALLOWED_HOSTS: "$FST_API_ALLOWED_HOSTS"
       FST_API_ANALYSER_FST: "$FST_API_ANALYSER_FST"
