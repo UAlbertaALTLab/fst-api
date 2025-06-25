@@ -14,3 +14,8 @@ To deploy this docker image, you must have a `.env` file inside the `docker/` fo
 If you intend to expose the API on the Internet instead of just using it locally, you should add to the `.env` file the allowed host names, for example:
 
     FST_API_ALLOWED_HOSTS=ciw-api.altlab.dev
+
+# Building docker image and starting
+    cd docker/
+    docker compose build
+    docker compose up -d
