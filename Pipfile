@@ -18,9 +18,8 @@ hfst-altlab = "*"
 markdown = "*"
 pygments = "*"
 drf-yasg = "*"
-uvicorn = "*"
-uvicorn-worker = "*"
 gunicorn = "*"
+whitenoise = "*"
 
 [scripts]
 test = "pytest --mypy src"

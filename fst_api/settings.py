@@ -33,6 +33,7 @@ ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "127.0.0.1").split(",")
 
 INSTALLED_APPS = [
     "django.contrib.messages",
+    "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "rest_framework",
     "drf_yasg",
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -108,7 +110,22 @@ REST_FRAMEWORK = {
     "UNAUTHENTICATED_USER": None,
 }
 
-ANALYSER_FST = "resources/" + os.environ.get("FST_API_ANALYZER_FST", "analyser.hfstol")
-GENERATOR_FST = "resources" + os.environ.get(
+ANALYSER_FST = "resources/" + os.environ.get("FST_API_ANALYSER_FST", "analyser.hfstol")
+GENERATOR_FST = "resources/" + os.environ.get(
     "FST_API_GENERATOR_FST", "generator.hfstol"
 )
+
+STATIC_URL = os.environ.get("STATIC_URL", "/static/")
+
+STATIC_ROOT = os.fspath(os.environ.get("STATIC_ROOT", default=BASE_DIR / "collected-static"))
+
+STATICFILES_DIRS = [
+]
+
+if DEBUG:
+    # Use the default static storage backed for debug purposes.
+    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+else:
+    # In production, use a manifest to encourage aggressive caching
+    # Note requires `manage.py collectstatic`!
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

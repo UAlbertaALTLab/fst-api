@@ -1,5 +1,5 @@
 from rest_framework import serializers, generics
-from django import settings
+from django.conf import settings
 from hfst_altlab import TransducerPair
 
 fsts = TransducerPair(analyser=settings.ANALYSER_FST, generator=settings.GENERATOR_FST)

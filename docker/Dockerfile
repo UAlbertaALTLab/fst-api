@@ -1,5 +1,7 @@
 FROM python:3.12-slim
 
+WORKDIR /app
+
 # Install pipenv
 RUN pip install pipenv
 
@@ -14,5 +16,7 @@ COPY . .
 
 EXPOSE 8000
 
+RUN python manage.py collectstatic --noinput
+
 # Run the application
-CMD ["python", "-m", "gunicorn", "fst_api.asgi:application", "-k", "uvicorn_worker.UvicornWorker", "--workers", "4"]
+CMD ["python", "-m", "gunicorn", "fst_api.wsgi:application", "--workers", "4", "--bind", "0.0.0.0:8000"]
