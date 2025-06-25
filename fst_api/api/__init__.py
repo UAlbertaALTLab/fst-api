@@ -5,9 +5,11 @@ from functools import lru_cache
 
 fsts = TransducerPair(analyser=settings.ANALYSER_FST, generator=settings.GENERATOR_FST)
 
+
 @lru_cache(max=10240)
 def cached_analyse(wordform):
     return fsts.analyse(wordform)
+
 
 class AnalysisSerializer(serializers.Serializer):
     lemma = serializers.StringRelatedField()

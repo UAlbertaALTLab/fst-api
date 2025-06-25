@@ -14,23 +14,24 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.urls import re_path
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from fst_api.api import AnalysisList
 
-#router = routers.DefaultRouter()
+# router = routers.DefaultRouter()
 
 schema_view = get_schema_view(
     openapi.Info(
         title="Altlab FST API",
-        default_version='v1',
+        default_version="v1",
         description="Provides access to an FST as a REST endpoint",
         public=True,
     )
 )
 
 urlpatterns = [
-    re_path('$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    re_path('^analyse/(?P<wordform>.+)$', AnalysisList.as_view() )
+    re_path("$", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
+    re_path("^analyse/(?P<wordform>.+)$", AnalysisList.as_view()),
 ]

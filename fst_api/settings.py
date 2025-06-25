@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import secrets
+from save_secret_key import save_secret_key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,11 +22,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-^!s!uxv0ag0jt*@%3#-5p3ktke6$hb57)xw(x@2t18r91m^v0i"
+SECRET_KEY = os.environ.get("SECRET_KEY", None)
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if SECRET_KEY is None:
+    # Generate a new key and save it!
+    SECRET_KEY = save_secret_key(secrets.token_hex())
+
+DEBUG = False
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "127.0.0.1").split(",")
 
@@ -117,10 +121,11 @@ GENERATOR_FST = "resources/" + os.environ.get(
 
 STATIC_URL = os.environ.get("STATIC_URL", "/static/")
 
-STATIC_ROOT = os.fspath(os.environ.get("STATIC_ROOT", default=BASE_DIR / "collected-static"))
+STATIC_ROOT = os.fspath(
+    os.environ.get("STATIC_ROOT", default=BASE_DIR / "collected-static")
+)
 
-STATICFILES_DIRS = [
-]
+STATICFILES_DIRS = []
 
 if DEBUG:
     # Use the default static storage backed for debug purposes.
