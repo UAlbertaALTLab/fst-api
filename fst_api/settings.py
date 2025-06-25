@@ -109,6 +109,6 @@ REST_FRAMEWORK = {
 }
 
 ANALYSER_FST = "resources/" + os.environ.get("FST_API_ANALYZER_FST", "analyser.hfstol")
-GENERATOR_FST = "resources" / +os.environ.get(
+GENERATOR_FST = "resources" + os.environ.get(
     "FST_API_GENERATOR_FST", "generator.hfstol"
 )

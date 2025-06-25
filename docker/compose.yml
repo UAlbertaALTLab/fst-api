@@ -1,6 +1,8 @@
 services:
   fst-api:
-    build: .
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
     container_name: fst-api
     ports:
       - "8085:8000"
@@ -11,4 +13,4 @@ services:
     env_file:
       - .env
     volumes:
-      ${FST_API_FST_PATH}:/app/resources/
+      - ${FST_API_FST_PATH}:/app/resources/
