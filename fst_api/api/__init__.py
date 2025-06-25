@@ -1,9 +1,13 @@
 from rest_framework import serializers, generics
 from django.conf import settings
 from hfst_altlab import TransducerPair
+from functools import lru_cache
 
 fsts = TransducerPair(analyser=settings.ANALYSER_FST, generator=settings.GENERATOR_FST)
 
+@lru_cache(max=10240)
+def cached_analyse(wordform):
+    return fsts.analyse(wordform)
 
 class AnalysisSerializer(serializers.Serializer):
     lemma = serializers.StringRelatedField()
@@ -21,4 +25,4 @@ class AnalysisList(generics.ListAPIView):
 
     def get_queryset(self):
         wordform = self.kwargs["wordform"]
-        return fsts.analyse(wordform)
+        return cached_analyse(wordform)
