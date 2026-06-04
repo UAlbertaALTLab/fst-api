@@ -12,7 +12,7 @@ django-stubs = "~=5.2"
 mypy = "*"
 
 [packages]
-Django = "~=5.2"
+Django = ">=5.2,<6.0"
 djangorestframework = "*"
 hfst-altlab = "*"
 markdown = "*"
