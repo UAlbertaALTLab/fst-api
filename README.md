@@ -8,9 +8,9 @@ Once deployed, the documentation for the api appears when visiting the deployed 
 
 To deploy this docker image, you must have a `.env` file inside the `docker/` folder with the following variables:
 - `FST_API_FST_PATH`: (required) The path where the FSTs are stored in the machine hosting the docker image.  It is necessary for making the FSTs available inside the docker image.
-- `FST_API_GENERATOR_NORM_FST`: (optional) The filename of the generator FST (with extension, without path). If missing, it defaults to "generator.hfstol"
-- `FST_API_ANALYSER_NORM_FST`: (optional) The filename of the normative analyser FST (with extension, without path). If missing, it defaults to "analyser.hfstol"
-- `FST_API_ANALYSER_DESC_FST`: (optional) The filename of the descriptive analyser FST (with extension, without path). If missing, it defaults to "analyser.hfstol"
+- `FST_API_GENERATOR_NORM_FST`: (optional) The filename of the generator FST (with extension, without path). If missing, it defaults to "generator-gt-norm.hfstol"
+- `FST_API_ANALYSER_NORM_FST`: (optional) The filename of the normative analyser FST (with extension, without path). If missing, it defaults to "analyser-gt-norm.hfstol"
+- `FST_API_ANALYSER_DESC_FST`: (optional) The filename of the descriptive analyser FST (with extension, without path). If missing, it defaults to "analyser-gt-desc.hfstol"
 
 If you intend to expose the API on the Internet instead of just using it locally, you should add to the `.env` file the allowed host names, for example:
 

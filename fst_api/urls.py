@@ -33,5 +33,5 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     re_path("$", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
-    re_path("^analyse/(?P<wordform>.+)$", AnalysisList.as_view()),
+    re_path("^analyse/(?P<wordform>.+)$", AnalysisList),
 ]
