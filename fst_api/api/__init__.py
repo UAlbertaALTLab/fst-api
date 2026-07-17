@@ -121,8 +121,7 @@ class AnalysisSerializer(serializers.Serializer):
 wordform_param = openapi.Parameter('wordform', openapi.IN_PATH, description="Word string being queried to the FSTs, usually comes from user input in a search", type=openapi.TYPE_STRING)
 response = openapi.Response("", schema=AnalysisSerializer)
 
-@swagger_auto_schema(method='get', manual_parameters=[wordform_param], responses={200: response})
-@api_view(['GET'])
+@swagger_auto_schema(manual_parameters=[wordform_param], responses={200: response})
 class AnalysisList(generics.ListAPIView):
     """
     Analysis List
