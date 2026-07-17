@@ -114,9 +114,10 @@ REST_FRAMEWORK = {
     "UNAUTHENTICATED_USER": None,
 }
 
-ANALYSER_FST = "resources/" + os.environ.get("FST_API_ANALYSER_FST", "analyser.hfstol")
-GENERATOR_FST = "resources/" + os.environ.get(
-    "FST_API_GENERATOR_FST", "generator.hfstol"
+ANALYSER_DESC_FST = "resources/" + os.environ.get("FST_API_ANALYSER_DESC_FST", "analyser.hfstol")
+ANALYSER_NORM_FST = "resources/" + os.environ.get("FST_API_ANALYSER_NORM_FST", "analyser.hfstol")
+GENERATOR_NORM_FST = "resources/" + os.environ.get(
+    "FST_API_GENERATOR_NORM_FST", "generator.hfstol"
 )
 
 STATIC_URL = os.environ.get("STATIC_URL", "/static/")

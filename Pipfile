@@ -20,6 +20,7 @@ pygments = "*"
 drf-yasg = "*"
 gunicorn = "*"
 whitenoise = "*"
+levenshtein = "*"
 
 [scripts]
 test = "pytest --mypy src"
